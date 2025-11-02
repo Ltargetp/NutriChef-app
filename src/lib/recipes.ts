@@ -1,0 +1,301 @@
+import { Recipe } from './types';
+
+const allRecipes: Recipe[] = [
+  {
+    id: 'quinoa-avocado-salad',
+    name: 'Quinoa Avocado Salad',
+    category: 'salads',
+    image: 'quinoa-salad',
+    description:
+      'A refreshing and nutritious salad with quinoa, avocado, and a zesty lime dressing. Perfect for a light lunch.',
+    calories: 350,
+    protein: 12,
+    carbs: 40,
+    fat: 18,
+    ingredients: [
+      '1 cup cooked quinoa',
+      '1 ripe avocado, diced',
+      '1 cup cherry tomatoes, halved',
+      '1/2 cucumber, diced',
+      '1/4 red onion, finely chopped',
+      '1/4 cup chopped cilantro',
+      'Juice of 1 lime',
+      '2 tbsp olive oil',
+    ],
+    instructions: [
+      'In a large bowl, combine the cooked quinoa, avocado, cherry tomatoes, cucumber, and red onion.',
+      'In a small bowl, whisk together the lime juice and olive oil.',
+      'Pour the dressing over the salad and toss to combine.',
+      'Stir in the cilantro just before serving.',
+    ],
+  },
+  {
+    id: 'grilled-chicken-breast',
+    name: 'Herbed Grilled Chicken',
+    category: 'chicken',
+    image: 'grilled-chicken-breast',
+    description:
+      'Juicy and flavorful grilled chicken breast marinated in herbs and lemon. A versatile protein for any meal.',
+    calories: 280,
+    protein: 45,
+    carbs: 2,
+    fat: 10,
+    ingredients: [
+      '2 boneless, skinless chicken breasts',
+      '2 tbsp olive oil',
+      '1 lemon, juiced',
+      '1 tsp dried oregano',
+      '1 tsp dried thyme',
+      '2 cloves garlic, minced',
+    ],
+    instructions: [
+      'In a bowl, mix olive oil, lemon juice, oregano, thyme, and garlic.',
+      'Add chicken breasts and marinate for at least 30 minutes.',
+      'Preheat grill to medium-high heat.',
+      'Grill chicken for 6-8 minutes per side, or until cooked through.',
+    ],
+  },
+  {
+    id: 'baked-salmon-with-asparagus',
+    name: 'Baked Salmon & Asparagus',
+    category: 'fish-seafood',
+    image: 'salmon-asparagus',
+    description:
+      'A simple and elegant one-pan meal of tender baked salmon and crisp asparagus. Rich in omega-3s.',
+    calories: 420,
+    protein: 35,
+    carbs: 10,
+    fat: 28,
+    ingredients: [
+      '2 salmon fillets',
+      '1 bunch asparagus, trimmed',
+      '1 tbsp olive oil',
+      '1 lemon, sliced',
+      'Salt and pepper to taste',
+    ],
+    instructions: [
+      'Preheat oven to 400°F (200°C).',
+      'Place salmon and asparagus on a baking sheet.',
+      'Drizzle with olive oil, season with salt and pepper.',
+      'Top salmon with lemon slices.',
+      'Bake for 12-15 minutes, or until salmon is cooked through.',
+    ],
+  },
+  {
+    id: 'hearty-lentil-soup',
+    name: 'Hearty Lentil Soup',
+    category: 'vegetarian',
+    image: 'lentil-soup',
+    description:
+      'A warm and comforting lentil soup packed with vegetables and flavor. A satisfying and high-fiber vegetarian meal.',
+    calories: 300,
+    protein: 18,
+    carbs: 50,
+    fat: 4,
+    ingredients: [
+      '1 cup brown or green lentils, rinsed',
+      '1 onion, chopped',
+      '2 carrots, chopped',
+      '2 celery stalks, chopped',
+      '4 cups vegetable broth',
+      '1 tsp cumin',
+    ],
+    instructions: [
+      'In a large pot, sauté onion, carrots, and celery until softened.',
+      'Add lentils, vegetable broth, and cumin.',
+      'Bring to a boil, then simmer for 25-30 minutes until lentils are tender.',
+      'Season with salt and pepper to taste.',
+    ],
+  },
+  {
+    id: 'avocado-toast-with-egg',
+    name: 'Avocado Toast with Egg',
+    category: 'low-calorie',
+    image: 'avocado-toast',
+    description:
+      'A quick and easy breakfast or snack. Creamy avocado on whole-grain toast, topped with an egg for extra protein.',
+    calories: 250,
+    protein: 14,
+    carbs: 20,
+    fat: 15,
+    ingredients: [
+      '1 slice whole-grain bread, toasted',
+      '1/2 avocado',
+      '1 large egg',
+      'Red pepper flakes (optional)',
+    ],
+    instructions: [
+      'Mash the avocado and spread it on the toast.',
+      'Cook the egg to your liking (fried, poached, or scrambled).',
+      'Place the egg on top of the avocado toast.',
+      'Sprinkle with red pepper flakes if desired.',
+    ],
+  },
+  {
+    id: 'berry-blast-smoothie',
+    name: 'Berry Blast Smoothie',
+    category: 'low-calorie',
+    image: 'berry-smoothie',
+    description:
+      'A refreshing smoothie loaded with antioxidants from mixed berries and protein from Greek yogurt.',
+    calories: 220,
+    protein: 15,
+    carbs: 30,
+    fat: 5,
+    ingredients: [
+      '1 cup mixed berries (frozen)',
+      '1/2 cup Greek yogurt',
+      '1/2 cup unsweetened almond milk',
+      '1 tbsp chia seeds',
+    ],
+    instructions: [
+      'Combine all ingredients in a blender.',
+      'Blend until smooth.',
+      'Pour into a glass and enjoy immediately.',
+    ],
+  },
+  {
+    id: 'chicken-veggie-stir-fry',
+    name: 'Chicken & Veggie Stir-fry',
+    category: 'chicken',
+    image: 'chicken-stir-fry',
+    description:
+      'A quick, colorful, and healthy stir-fry with tender chicken and crisp vegetables in a light soy-ginger sauce.',
+    calories: 380,
+    protein: 30,
+    carbs: 25,
+    fat: 18,
+    ingredients: [
+      '1 chicken breast, thinly sliced',
+      '1 cup broccoli florets',
+      '1 bell pepper, sliced',
+      '1 carrot, julienned',
+      '2 tbsp soy sauce',
+      '1 tsp grated ginger',
+    ],
+    instructions: [
+      'In a wok or large skillet, stir-fry chicken until cooked.',
+      'Add broccoli, bell pepper, and carrot. Stir-fry for 3-5 minutes.',
+      'Add soy sauce and ginger, and toss everything to combine.',
+      'Serve hot, optionally with brown rice.',
+    ],
+  },
+  {
+    id: 'classic-greek-salad',
+    name: 'Classic Greek Salad',
+    category: 'salads',
+    image: 'greek-salad',
+    description:
+      'A timeless salad with crisp lettuce, juicy tomatoes, cucumbers, olives, and feta cheese in a simple vinaigrette.',
+    calories: 320,
+    protein: 8,
+    carbs: 15,
+    fat: 25,
+    ingredients: [
+      '1 head of romaine lettuce, chopped',
+      '1 cup cherry tomatoes, halved',
+      '1 cucumber, sliced',
+      '1/2 cup Kalamata olives',
+      '1/2 cup feta cheese, crumbled',
+      '3 tbsp olive oil',
+      '1 tbsp red wine vinegar',
+    ],
+    instructions: [
+      'Combine lettuce, tomatoes, cucumber, olives, and feta in a large bowl.',
+      'In a small bowl, whisk together olive oil and red wine vinegar.',
+      'Drizzle dressing over the salad and toss to serve.',
+    ],
+  },
+  {
+    id: 'garlic-shrimp-zoodles',
+    name: 'Garlic Shrimp with Zoodles',
+    category: 'fish-seafood',
+    image: 'shrimp-scampi',
+    description:
+      'A light, low-carb alternative to pasta. Sautéed garlic shrimp served over spiralized zucchini noodles.',
+    calories: 290,
+    protein: 25,
+    carbs: 12,
+    fat: 18,
+    ingredients: [
+      '1 lb shrimp, peeled and deveined',
+      '2 medium zucchinis, spiralized',
+      '3 cloves garlic, minced',
+      '2 tbsp olive oil',
+      'Juice of 1/2 lemon',
+      'Pinch of red pepper flakes',
+    ],
+    instructions: [
+      'In a large skillet, heat olive oil over medium heat. Add garlic and red pepper flakes, and cook for 1 minute.',
+      'Add shrimp and cook until pink, about 2-3 minutes per side.',
+      'Add zucchini noodles (zoodles) to the skillet and toss with the shrimp.',
+      'Cook for another 1-2 minutes until zoodles are slightly tender.',
+      'Squeeze lemon juice over the top before serving.',
+    ],
+  },
+  {
+    id: 'veggie-tofu-scramble',
+    name: 'Veggie Tofu Scramble',
+    category: 'vegetarian',
+    image: 'tofu-scramble',
+    description:
+      'A delicious and protein-rich vegan breakfast that mimics scrambled eggs using tofu and your favorite vegetables.',
+    calories: 260,
+    protein: 20,
+    carbs: 10,
+    fat: 16,
+    ingredients: [
+      '1 block firm tofu, pressed and crumbled',
+      '1/2 onion, chopped',
+      '1 bell pepper, chopped',
+      '1 cup spinach',
+      '1 tsp turmeric',
+      '1 tbsp nutritional yeast',
+    ],
+    instructions: [
+      'In a skillet, sauté onion and bell pepper until soft.',
+      'Add crumbled tofu, turmeric, and nutritional yeast. Cook, stirring, for 5 minutes.',
+      'Stir in spinach and cook until wilted.',
+      'Season with salt and pepper to taste.',
+    ],
+  },
+  {
+    id: 'mediterranean-roasted-vegetables',
+    name: 'Mediterranean Roasted Vegetables',
+    category: 'vegetable',
+    image: 'roasted-vegetables',
+    description:
+      'A simple, flavorful side dish of colorful vegetables roasted with olive oil and Mediterranean herbs.',
+    calories: 180,
+    protein: 4,
+    carbs: 20,
+    fat: 10,
+    ingredients: [
+      '1 zucchini, chopped',
+      '1 red bell pepper, chopped',
+      '1 red onion, cut into wedges',
+      '1 cup cherry tomatoes',
+      '2 tbsp olive oil',
+      '1 tsp dried oregano',
+    ],
+    instructions: [
+      'Preheat oven to 425°F (220°C).',
+      'Toss all vegetables with olive oil and oregano on a baking sheet.',
+      'Season with salt and pepper.',
+      'Roast for 20-25 minutes, until tender and slightly caramelized.',
+    ],
+  },
+];
+
+export const getRecipes = () => allRecipes;
+
+export const getRecipeById = (id: string) =>
+  allRecipes.find((recipe) => recipe.id === id);
+
+export const getRecipesByCategory = (categorySlug: string) =>
+  allRecipes.filter((recipe) => recipe.category === categorySlug);
+
+export const getFeaturedRecipes = (count: number) => {
+  const shuffled = [...allRecipes].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+}
