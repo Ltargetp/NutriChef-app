@@ -1,3 +1,4 @@
+
 import { Recipe } from './types';
 
 const allRecipes: Recipe[] = [
@@ -790,3 +791,5 @@ export const getFeaturedRecipes = (count: number) => {
   const shuffled = [...allRecipes].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, count);
 }
+
+  

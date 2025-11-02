@@ -79,10 +79,10 @@
       "imageHint": "chocolate mousse"
     },
     {
-      "id": "classic-margarita",
-      "description": "A classic margarita cocktail with a lime wedge.",
-      "imageUrl": "https://images.unsplash.com/photo-1729615385148-14716f0b6d8d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtYXJnYXJpdGElMjBjb2NrdGFpbHxlbnwwfHx8fDE3NjIxMDEwNDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "margarita cocktail"
+      "id": "peanut-butter-smoothie",
+      "description": "A peanut butter and banana smoothie.",
+      "imageUrl": "https://images.unsplash.com/photo-1593858736716-99cd5822e67a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwZWFudXRidXR0ZXIlMjBzbW9vdGhpZXxlbnwwfHx8fDE3NjIxMTI2NDl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "peanutbutter smoothie"
     },
     {
       "id": "green-detox-smoothie",
@@ -159,49 +159,43 @@
     {
       "id": "stuffed-peppers",
       "description": "Bell peppers stuffed with rice and beans.",
-      "imageUrl": "https://images.unsplash.com/photo-1741518165765-af1c27e6795e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c3R1ZmZlZCUyMHBlcHBlcnN8ZW58MHx8fHwxNzYyMTEyNjQ5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1741518165765-af1c27e6795e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c3R1ZmZlZCUyMHBlcHBlcnN8ZW58MHx8fHwxNzYyMTEyNjQ5fDA&ixlibrb-4.1.0&q=80&w=1080",
       "imageHint": "stuffed peppers"
     },
     {
       "id": "baked-apple",
       "description": "A baked apple with cinnamon and oats.",
-      "imageUrl": "https://images.unsplash.com/photo-1694944776229-20b2f71e2477?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxiYWtlZCUyMGFwcGxlfGVufDB8fHx8MTc2MjExMjY0OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1694944776229-20b2f71e2477?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxiYWtlZCUyMGFwcGxlfGVufDB8fHx8MTc2MjExMjY0OXww&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "baked apple"
-    },
-    {
-      "id": "peanut-butter-smoothie",
-      "description": "A peanut butter and banana smoothie.",
-      "imageUrl": "https://images.unsplash.com/photo-1593858736716-99cd5822e67a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwZWFudXRidXR0ZXIlMjBzbW9vdGhpZXxlbnwwfHx8fDE3NjIxMTI2NDl8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "peanutbutter smoothie"
     },
     {
       "id": "strawberry-spinach-salad",
       "description": "A spinach salad with strawberries and goat cheese.",
-      "imageUrl": "https://images.unsplash.com/photo-1624445518467-ab87618e0314?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzdHJhd2JlcnJ5JTIwc2FsYWR8ZW58MHx8fHwxNzYyMTEyNjQ5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1624445518467-ab87618e0314?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzdHJhd2JlcnJ5JTIwc2FsYWR8ZW58MHx8fHwxNzYyMTEyNjQ5fDA&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "strawberry salad"
     },
     {
       "id": "sheet-pan-fajitas",
       "description": "Chicken fajitas on a sheet pan.",
-      "imageUrl": "https://images.unsplash.com/photo-1589262269472-dbbd16955dbe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjaGlja2VuJTIwZmFqaXRhc3xlbnwwfHx8fDE3NjIxMTI2NDl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1589262269472-dbbd16955dbe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjaGlja2VuJTIwZmFqaXRhc3xlbnwwfHx8fDE3NjIxMTI2NDl8MA&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "chicken fajitas"
     },
     {
       "id": "shrimp-ceviche",
       "description": "Shrimp ceviche in a bowl.",
-      "imageUrl": "https://images.unsplash.com/photo-1608176439783-556c7f59f263?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxzaHJpbXAlMjBjZXZpY2hlfGVufDB8fHx8MTc2MjExMjY0OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1608176439783-556c7f59f263?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxzaHJpbXAlMjBjZXZpY2hlfGVufDB8fHx8MTc2MjExMjY0OXww&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "shrimp ceviche"
     },
     {
       "id": "zucchini-fritters",
       "description": "Golden brown zucchini fritters.",
-      "imageUrl": "https://images.unsplash.com/photo-1737049994922-176fa32bdb8b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx6dWNjaGluaSUyMGZyaXR0ZXJzfGVufDB8fHx8MTc2MjExMjY0OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1737049994922-176fa32bdb8b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx6dWNjaGluaSUyMGZyaXR0ZXJzfGVufDB8fHx8MTc2MjExMjY0OXww&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "zucchini fritters"
     },
     {
       "id": "roasted-brussels-sprouts",
       "description": "Roasted brussels sprouts.",
-      "imageUrl": "https://images.unsplash.com/photo-1608813607488-0f932c5b71ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxicnVzc2VscyUyMHNwcm91dHN8ZW58MHx8fHwxNzYyMTEyNjQ5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1608813607488-0f932c5b71ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxianVzc2VscyUyMHNwcm91dHN8ZW58MHx8fHwxNzYyMTEyNjQ5fDA&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "brussels sprouts"
     }
   ]
