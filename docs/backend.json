@@ -1,0 +1,309 @@
+{
+  "entities": {
+    "Recipe": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Recipe",
+      "type": "object",
+      "description": "Represents a recipe with its nutritional information and categories.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Recipe entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the recipe."
+        },
+        "description": {
+          "type": "string",
+          "description": "A short description of the recipe."
+        },
+        "calories": {
+          "type": "number",
+          "description": "The number of calories in the recipe."
+        },
+        "protein": {
+          "type": "number",
+          "description": "The amount of protein in the recipe (in grams)."
+        },
+        "carbohydrates": {
+          "type": "number",
+          "description": "The amount of carbohydrates in the recipe (in grams)."
+        },
+        "fat": {
+          "type": "number",
+          "description": "The amount of fat in the recipe (in grams)."
+        },
+        "ingredients": {
+          "type": "array",
+          "description": "A list of ingredients needed for the recipe.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "instructions": {
+          "type": "string",
+          "description": "The instructions to prepare the recipe."
+        },
+        "categoryIds": {
+          "type": "array",
+          "description": "References to Categories. (Relationship: Category N:N Recipe)",
+          "items": {
+            "type": "string"
+          }
+        },
+        "isDessert": {
+          "type": "boolean",
+          "description": "Whether the recipe is a dessert."
+        },
+        "isCocktail": {
+          "type": "boolean",
+          "description": "Whether the recipe is a cocktail."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description",
+        "calories",
+        "protein",
+        "carbohydrates",
+        "fat",
+        "ingredients",
+        "instructions"
+      ]
+    },
+    "Category": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Category",
+      "type": "object",
+      "description": "Represents a category of recipes (e.g., salads, chicken, desserts).",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Category entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the category (e.g., Salad, Chicken, Dessert)."
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "UserProfile": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "UserProfile",
+      "type": "object",
+      "description": "Represents a user's profile and preferences.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the UserProfile entity."
+        },
+        "favoriteRecipeIds": {
+          "type": "array",
+          "description": "References to Favorite Recipes. (Relationship: UserProfile 1:N Recipe)",
+          "items": {
+            "type": "string"
+          }
+        },
+        "preferredSearchOptions": {
+          "type": "string",
+          "description": "User's preferred search options (e.g., ingredients to include/exclude)."
+        },
+        "subscriptionId": {
+          "type": "string",
+          "description": "Reference to Subscription. (Relationship: Subscription 1:1 UserProfile)"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "DailyPlan": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "DailyPlan",
+      "type": "object",
+      "description": "Represents a user's daily meal plan with calorie targets and meal preferences.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the DailyPlan entity."
+        },
+        "userProfileId": {
+          "type": "string",
+          "description": "Reference to UserProfile. (Relationship: UserProfile 1:N DailyPlan)"
+        },
+        "date": {
+          "type": "string",
+          "description": "The date for which the daily plan is created.",
+          "format": "date-time"
+        },
+        "calorieTarget": {
+          "type": "number",
+          "description": "The user's daily calorie target."
+        },
+        "mealPreferences": {
+          "type": "string",
+          "description": "User's meal preferences for the day (e.g., specific recipes or ingredients)."
+        },
+        "recipeIds": {
+          "type": "array",
+          "description": "References to Recipes. (Relationship: Recipe N:N DailyPlan)",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "userProfileId",
+        "date",
+        "calorieTarget"
+      ]
+    },
+    "Subscription": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Subscription",
+      "type": "object",
+      "description": "Represents a user's subscription status and details.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Subscription entity."
+        },
+        "startDate": {
+          "type": "string",
+          "description": "The start date of the subscription.",
+          "format": "date-time"
+        },
+        "endDate": {
+          "type": "string",
+          "description": "The end date of the subscription.",
+          "format": "date-time"
+        },
+        "level": {
+          "type": "string",
+          "description": "The subscription level (e.g., Free, Premium, Pro)."
+        },
+        "paymentMethod": {
+          "type": "string",
+          "description": "The payment method used for the subscription (e.g., Revolut, PayPal)."
+        }
+      },
+      "required": [
+        "id",
+        "startDate",
+        "endDate",
+        "level",
+        "paymentMethod"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/recipes/{recipeId}",
+        "definition": {
+          "entityName": "Recipe",
+          "schema": {
+            "$ref": "#/backend/entities/Recipe"
+          },
+          "description": "Stores recipe data. Accessible to all users.",
+          "params": [
+            {
+              "name": "recipeId",
+              "description": "The unique identifier of the recipe."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/categories/{categoryId}",
+        "definition": {
+          "entityName": "Category",
+          "schema": {
+            "$ref": "#/backend/entities/Category"
+          },
+          "description": "Stores category data. Accessible to all users.",
+          "params": [
+            {
+              "name": "categoryId",
+              "description": "The unique identifier of the category."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/userProfiles/{userProfileId}",
+        "definition": {
+          "entityName": "UserProfile",
+          "schema": {
+            "$ref": "#/backend/entities/UserProfile"
+          },
+          "description": "Stores user profile data. Only accessible to the user. Includes denormalized 'userId' for authorization independence.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user."
+            },
+            {
+              "name": "userProfileId",
+              "description": "The unique identifier of the user profile."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/dailyPlans/{dailyPlanId}",
+        "definition": {
+          "entityName": "DailyPlan",
+          "schema": {
+            "$ref": "#/backend/entities/DailyPlan"
+          },
+          "description": "Stores daily plan data for a user. Only accessible to the user. Includes denormalized 'userProfileId' for authorization independence.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user."
+            },
+            {
+              "name": "dailyPlanId",
+              "description": "The unique identifier of the daily plan."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/subscriptions/{subscriptionId}",
+        "definition": {
+          "entityName": "Subscription",
+          "schema": {
+            "$ref": "#/backend/entities/Subscription"
+          },
+          "description": "Stores subscription data for a user. Only accessible to the user.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user."
+            },
+            {
+              "name": "subscriptionId",
+              "description": "The unique identifier of the subscription."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore data structure is designed to ensure security, scalability, and ease of debugging, adhering to the core design principles of Authorization Independence, Clarity of Intent, DBAC (Database-Based Access Control), and QAPs (Rules are not Filters). It also adheres to the design strategy mandates. Recipes and Categories are stored in root collections, accessible to all users, and can be made public to anonymous users.\n\nAuthorization Independence is achieved through denormalization. The `DailyPlan` collection, which is user-specific, includes the `userProfileId` from the parent `UserProfile` document. This eliminates the need for `get()` calls in security rules to verify ownership, ensuring atomic operations. Access to the `DailyPlan` collection is restricted to the user identified by the `userProfileId`.\n\nStructural Segregation is implemented by storing user-specific data (UserProfile, DailyPlan, and Subscription) under the `/users/{userId}` path. This approach ensures that all documents within a collection share the same security requirements. The recipes and categories are placed in root-level collections, making them globally accessible and manageable without user-specific restrictions.\n\nAccess Modeling follows consistent patterns. Private user data (UserProfile, DailyPlan, and Subscription) is organized under the `/users/{userId}` path. The absence of the membership map is because there are no collaborative documents.\n\nThe QAPs principle is supported through structural segregation. Listing recipes and categories does not require filtering based on user roles or permissions because access to the base collections is public. The data structure supports the integrity of ownership, timestamps, and denormalized data by enforcing strict naming conventions and explicit state modeling.\n\nDenormalization strategy: The `DailyPlan` stores the `userProfileId`, eliminating the need to `get()` the UserProfile to authorize access. This supports atomic operations.\n\nQAPs support: The structure enables secure `list` operations. Recipes and categories are publicly accessible so listing them does not require filtering. Access to `DailyPlan` is controlled by the `userId` segment in the path, so it can be securely listed."
+  }
+}

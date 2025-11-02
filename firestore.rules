@@ -1,0 +1,128 @@
+/**
+ * @fileOverview Firestore Security Rules for NutriChef App
+ *
+ * Core Philosophy:
+ * This ruleset enforces a strict user-ownership model for private user data (profiles, daily plans, subscriptions) while allowing public read access to recipes and categories.
+ *
+ * Data Structure:
+ * - `/recipes/{recipeId}`: Publicly accessible recipe data.
+ * - `/categories/{categoryId}`: Publicly accessible category data.
+ * - `/users/{userId}/userProfiles/{userProfileId}`: Private user profile data, owned by the user.
+ * - `/users/{userId}/dailyPlans/{dailyPlanId}`: Private daily plan data, owned by the user.
+ * - `/users/{userId}/subscriptions/{subscriptionId}`: Private subscription data, owned by the user.
+ *
+ * Key Security Decisions:
+ * - Recipes and categories are publicly readable.
+ * - Users can only access their own profile, daily plans, and subscription data.
+ * - Listing of user profiles, daily plans, and subscriptions is restricted to the owner.
+ * - No data shape validation is performed beyond authorization-critical fields.
+ *
+ * Denormalization for Authorization:
+ * - DailyPlan documents store the userProfileId, avoiding the need for security rules to perform `get()` operations on the UserProfile collection. This enables atomic authorization checks based solely on the DailyPlan document itself.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * @description Allows public read access to recipes and restricts write access.
+     * @path /recipes/{recipeId}
+     * @allow get, list: Always. Recipes are publicly available.
+     * @allow create: Never. Recipes can only be created by admins. // TODO: Add owner validation once the schema is updated with an ownership field.
+     * @allow update: Never. Recipes can only be updated by admins. // TODO: Add owner validation once the schema is updated with an ownership field.
+     * @allow delete: Never. Recipes can only be deleted by admins. // TODO: Add owner validation once the schema is updated with an ownership field.
+     * @principle Allows public reads, restricts writes to authorized users.
+     */
+    match /recipes/{recipeId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if false; // TODO: Add owner validation once the schema is updated with an ownership field.
+      allow update: if false; // TODO: Add owner validation once the schema is updated with an ownership field.
+      allow delete: if false; // TODO: Add owner validation once the schema is updated with an ownership field.
+    }
+
+    /**
+     * @description Allows public read access to categories and restricts write access.
+     * @path /categories/{categoryId}
+     * @allow get, list: Always. Categories are publicly available.
+     * @allow create: Never. Categories can only be created by admins. // TODO: Add owner validation once the schema is updated with an ownership field.
+     * @allow update: Never. Categories can only be updated by admins. // TODO: Add owner validation once the schema is updated with an ownership field.
+     * @allow delete: Never. Categories can only be deleted by admins. // TODO: Add owner validation once the schema is updated with an ownership field.
+     * @principle Allows public reads, restricts writes to authorized users.
+     */
+    match /categories/{categoryId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if false; // TODO: Add owner validation once the schema is updated with an ownership field.
+      allow update: if false; // TODO: Add owner validation once the schema is updated with an ownership field.
+      allow delete: if false; // TODO: Add owner validation once the schema is updated with an ownership field.
+    }
+
+    /**
+     * @description Manages access to user profiles, ensuring only the owner can read and write.
+     * @path /users/{userId}/userProfiles/{userProfileId}
+     * @allow get: User (auth_uid=userId) can read their own profile.
+     * @allow list: User (auth_uid=userId) can list their own profiles.
+     * @allow create: User (auth_uid=userId) can create their own profile, validating userProfileId matches.
+     * @allow update: User (auth_uid=userId) can update their own profile, ensuring userProfileId remains unchanged.
+     * @allow delete: User (auth_uid=userId) can delete their own profile.
+     * @principle Enforces document ownership for all operations.
+     */
+    match /users/{userId}/userProfiles/{userProfileId} {
+      allow get: if isSignedIn() && isOwner(userId);
+      allow list: if isSignedIn() && isOwner(userId);
+      allow create: if isSignedIn() && isOwner(userId) && request.resource.data.id == userId;
+      allow update: if isSignedIn() && isExistingOwner(userId) && request.resource.data.id == resource.data.id;
+      allow delete: if isSignedIn() && isExistingOwner(userId);
+    }
+
+    /**
+     * @description Manages access to daily plans, ensuring only the owner can read and write.
+     * @path /users/{userId}/dailyPlans/{dailyPlanId}
+     * @allow get: User (auth_uid=userId) can read their own daily plan.
+     * @allow list: User (auth_uid=userId) can list their own daily plans.
+     * @allow create: User (auth_uid=userId) can create their own daily plan, validating userProfileId matches.
+     * @allow update: User (auth_uid=userId) can update their own daily plan, ensuring userProfileId remains unchanged.
+     * @allow delete: User (auth_uid=userId) can delete their own daily plan.
+     * @principle Enforces document ownership for all operations.
+     */
+    match /users/{userId}/dailyPlans/{dailyPlanId} {
+      allow get: if isSignedIn() && isOwner(userId);
+      allow list: if isSignedIn() && isOwner(userId);
+      allow create: if isSignedIn() && isOwner(userId) && request.resource.data.userProfileId == userId;
+      allow update: if isSignedIn() && isExistingOwner(userId) && request.resource.data.userProfileId == resource.data.userProfileId;
+      allow delete: if isSignedIn() && isExistingOwner(userId);
+    }
+
+    /**
+     * @description Manages access to subscriptions, ensuring only the owner can read and write.
+     * @path /users/{userId}/subscriptions/{subscriptionId}
+     * @allow get: User (auth_uid=userId) can read their own subscription.
+     * @allow list: User (auth_uid=userId) can list their own subscriptions.
+     * @allow create: User (auth_uid=userId) can create their own subscription.
+     * @allow update: User (auth_uid=userId) can update their own subscription.
+     * @allow delete: User (auth_uid=userId) can delete their own subscription.
+     * @principle Enforces document ownership for all operations.
+     */
+    match /users/{userId}/subscriptions/{subscriptionId} {
+      allow get: if isSignedIn() && isOwner(userId);
+      allow list: if isSignedIn() && isOwner(userId);
+      allow create: if isSignedIn() && isOwner(userId);
+      allow update: if isSignedIn() && isExistingOwner(userId);
+      allow delete: if isSignedIn() && isExistingOwner(userId);
+    }
+  }
+
+  // Helper Functions
+  function isSignedIn() {
+    return request.auth != null;
+  }
+
+  function isOwner(userId) {
+    return request.auth.uid == userId;
+  }
+
+  function isExistingOwner(userId) {
+      return isOwner(userId) && resource != null;
+  }
+}
