@@ -71,6 +71,18 @@
       "description": "A bowl of oatmeal topped with fresh berries.",
       "imageUrl": "https://images.unsplash.com/photo-1602682822546-09bc5623461e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxvYXRtZWFsJTIwYmVycmllc3xlbnwwfHx8fDE3NjIwNjk1MDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "oatmeal berries"
+    },
+    {
+      "id": "chocolate-avocado-mousse",
+      "description": "Rich, creamy chocolate avocado mousse.",
+      "imageUrl": "https://images.unsplash.com/photo-1673551491291-5b17d2842988?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjaG9jb2xhdGUlMjBtb3Vzc2V8ZW58MHx8fHwxNzYyMTA4ODgwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "chocolate mousse"
+    },
+    {
+      "id": "classic-margarita",
+      "description": "A classic margarita cocktail with a lime wedge.",
+      "imageUrl": "https://images.unsplash.com/photo-1601887573188-79fb3c767157?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtYXJnYXJpdGElMjBjb2NrdGFpbHxlbnwwfHx8fDE3NjIxMDEwNDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "margarita cocktail"
     }
   ]
 }
