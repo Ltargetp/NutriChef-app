@@ -1,35 +1,14 @@
+'use client';
 import { getRecipesByCategory } from '@/lib/recipes';
-import { categories } from '@/lib/categories';
 import { RecipeCard } from '@/components/recipes/recipe-card';
 import Header from '@/components/layout/header';
-import { notFound } from 'next/navigation';
-import SearchPage from '@/app/search/page';
 
-export async function generateStaticParams() {
-  return categories.map((category) => ({
-    slug: category.slug,
-  }));
-}
-
-export default function CategoryPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  if (params.slug === 'search') {
-    return <SearchPage />;
-  }
-  
-  const category = categories.find((c) => c.slug === params.slug);
-  if (!category) {
-    notFound();
-  }
-
-  const recipes = getRecipesByCategory(params.slug);
+export default function CategoryPage() {
+  const recipes = getRecipesByCategory('smoothies');
 
   return (
     <div className="flex h-full min-h-screen flex-col">
-      <Header title={category.name} />
+      <Header title="Smoothies" />
       <main className="flex-1 overflow-y-auto p-4 md:p-8">
         {recipes.length > 0 ? (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

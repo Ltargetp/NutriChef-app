@@ -1,5 +1,5 @@
 import { Category } from '@/lib/types';
-import { Leaf, Drumstick, Fish, Scale, Carrot, Vegan, Cake, Martini } from 'lucide-react';
+import { Leaf, Drumstick, Fish, Scale, Carrot, Vegan, Cake, Search, Blend } from 'lucide-react';
 
 export const categories: Category[] = [
   { name: 'Salads', slug: 'salads', icon: Leaf },
@@ -9,5 +9,6 @@ export const categories: Category[] = [
   { name: 'Vegetable', slug: 'vegetable', icon: Carrot },
   { name: 'Vegetarian', slug: 'vegetarian', icon: Vegan },
   { name: 'Desserts', slug: 'desserts', icon: Cake },
-  { name: 'Cocktails', slug: 'cocktails', icon: Martini },
+  { name: 'Smoothies', slug: 'smoothies', icon: Blend },
+  { name: 'Search', slug: 'search', icon: Search },
 ];

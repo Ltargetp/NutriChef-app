@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 
 export function CategoryList() {
   return (
-    <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
+    <div className="grid grid-cols-3 gap-4 md:grid-cols-3 lg:grid-cols-3">
       {categories.map((category) => (
         <Link href={`/category/${category.slug}`} key={category.slug} className="group">
           <Card className="overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-lg group-hover:-translate-y-1 group-hover:border-primary/50">

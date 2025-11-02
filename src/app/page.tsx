@@ -2,9 +2,8 @@ import Header from '@/components/layout/header';
 import { CategoryList } from '@/components/recipes/category-list';
 import { RecipeCard } from '@/components/recipes/recipe-card';
 import { getFeaturedRecipes } from '@/lib/recipes';
-import { Utensils, Search } from 'lucide-react';
+import { Utensils } from 'lucide-react';
 import Link from 'next/link';
-import { Input } from '@/components/ui/input';
 
 export default function Home() {
   const featuredRecipes = getFeaturedRecipes(4);
@@ -23,15 +22,6 @@ export default function Home() {
             <p className="mt-4 max-w-2xl mx-auto text-muted-foreground text-lg">
               Your ultimate guide to healthy and delicious meals. Explore recipes, create meal plans, and achieve your wellness goals.
             </p>
-             <div className="mt-6 mx-auto max-w-lg">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                  <Input 
-                    placeholder="Search for recipes..."
-                    className="w-full pl-10 h-12 text-lg"
-                  />
-                </div>
-            </div>
           </section>
 
           <section>
