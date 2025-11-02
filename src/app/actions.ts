@@ -1,7 +1,7 @@
 "use server";
 
 import {
-  suggestRecipes,
+  suggestRecipes, SuggestRecipesOutput,
 } from '@/ai/flows/ingredient-based-recipe-suggestion';
 import { z } from 'zod';
 
@@ -12,7 +12,7 @@ const formSchema = z.object({
 
 type FormState = {
   message: string;
-  data: string[] | null;
+  data: SuggestRecipesOutput['recipes'] | null;
   errors: Record<string, string[] | undefined> | null;
 }
 
@@ -35,17 +35,10 @@ export async function generateRecipesAction(
 
   try {
     const result = await suggestRecipes(validatedFields.data);
-    // The result from AI is a single string. Parse it into a list.
-    // Assuming recipes are separated by newlines and may have numbering/bullet points.
-    const recipes = result.recipes
-      .split('\n')
-      .map((r) => r.trim().replace(/^[*-]?\s*\d*\.\s*/, '')) // Remove bullets/numbering
-      .filter((r) => r.length > 0);
-      
     return {
       message: 'Success',
       errors: null,
-      data: recipes,
+      data: result.recipes,
     };
   } catch (error) {
     console.error('AI Action Error:', error);

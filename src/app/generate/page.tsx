@@ -6,9 +6,9 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { generateRecipesAction } from '@/app/actions';
-import { Sparkles, Loader2 } from 'lucide-react';
+import { Sparkles, Loader2, Flame, Zap, Brain, Droplets } from 'lucide-react';
 
 const initialState = {
   message: '',
@@ -46,6 +46,9 @@ export default function GeneratePage() {
                 <Sparkles className="text-primary" />
                 Recipe Generator
               </CardTitle>
+              <CardDescription>
+                Enter ingredients you have, and our AI will suggest healthy recipes with nutritional info.
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <form action={formAction} className="space-y-6">
@@ -79,20 +82,35 @@ export default function GeneratePage() {
           </Card>
 
           {state.data && (
-            <Card>
-              <CardHeader>
-                <CardTitle className="font-headline text-xl">
-                  Suggested Recipes
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="list-disc space-y-2 pl-5 text-foreground">
-                  {state.data.map((recipe, index) => (
-                    <li key={index}>{recipe}</li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
+            <div className="space-y-4">
+               <h2 className="font-headline text-xl text-center">Suggested Recipes</h2>
+              {state.data.map((recipe, index) => (
+                 <Card key={index}>
+                   <CardHeader>
+                     <CardTitle className="font-headline text-lg">{recipe.name}</CardTitle>
+                     <CardDescription>{recipe.description}</CardDescription>
+                   </CardHeader>
+                   <CardFooter className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs text-muted-foreground sm:grid-cols-4">
+                      <div className="flex items-center gap-1.5">
+                        <Flame className="h-4 w-4 text-primary/70" />
+                        <span>{recipe.calories} kcal</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Zap className="h-4 w-4 text-primary/70" />
+                        <span>{recipe.protein}g protein</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Brain className="h-4 w-4 text-primary/70" />
+                        <span>{recipe.carbohydrates}g carbs</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Droplets className="h-4 w-4 text-primary/70" />
+                        <span>{recipe.fat}g fat</span>
+                      </div>
+                   </CardFooter>
+                 </Card>
+              ))}
+            </div>
           )}
 
           {state.message && state.message !== 'Success' && !state.errors && (

@@ -13,9 +13,26 @@ export default function SearchPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const allRecipes = getRecipes();
 
-  const filteredRecipes = allRecipes.filter((recipe) =>
-    recipe.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const searchTerms = searchTerm.toLowerCase().split(',').map(s => s.trim()).filter(s => s);
+
+  const filteredRecipes = searchTerm.length === 0 ? [] : allRecipes.filter((recipe) => {
+    const recipeNameMatches = recipe.name.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    if (recipeNameMatches) {
+      return true;
+    }
+
+    if (searchTerms.length > 0) {
+      const ingredientMatches = recipe.ingredients.some(ingredient => 
+        searchTerms.some(term => ingredient.toLowerCase().includes(term))
+      );
+      if (ingredientMatches) {
+        return true;
+      }
+    }
+    
+    return false;
+  });
 
   return (
     <div className="flex h-full min-h-screen flex-col">
@@ -26,7 +43,7 @@ export default function SearchPage() {
             <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
             <Input
               type="text"
-              placeholder="Search for a recipe by name..."
+              placeholder="Search by name or ingredients (e.g., chicken, broccoli)..."
               className="w-full pl-12 h-14 text-lg rounded-full shadow-md"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
