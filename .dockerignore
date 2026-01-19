@@ -1,0 +1,21 @@
+node_modules
+.next
+out
+coverage
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.DS_Store
+.git
+.gitignore
+README.md
+.vscode
+.idea
+*.local
+.env
+.env.*
+
+# Dokploy / CI artifacts
+.idx
+.modified
