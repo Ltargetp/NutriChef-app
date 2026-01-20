@@ -18,33 +18,34 @@ export function RecipeCard({ recipe }: { recipe: Recipe }) {
 
   return (
     <Link href={`/recipes/${recipe.id}`} className="group block">
-      <Card className="flex h-full flex-col overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-xl group-hover:-translate-y-1">
+      <Card className="flex h-full flex-col overflow-hidden border border-border/60 bg-card/80 transition-all duration-300 ease-in-out group-hover:-translate-y-1 group-hover:border-primary/40 group-hover:shadow-xl">
         <CardHeader className="relative p-0">
-          <div className="aspect-w-16 aspect-h-9">
+          <div className="aspect-video">
             {placeholder && (
               <Image
                 src={placeholder.imageUrl}
                 alt={placeholder.description}
                 width={600}
                 height={400}
-                className="w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                 data-ai-hint={placeholder.imageHint}
               />
             )}
           </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60" />
           <div className="absolute right-2 top-2">
             <FavoriteButton recipeId={recipe.id} className="bg-background/70 hover:bg-background" />
           </div>
         </CardHeader>
-        <CardContent className="flex-1 p-4">
-          <CardTitle className="mb-1 text-lg font-bold font-headline leading-snug">
+        <CardContent className="flex-1 p-4 sm:p-5">
+          <CardTitle className="mb-1 text-base font-semibold leading-snug sm:text-lg">
             {recipe.name}
           </CardTitle>
-          <CardDescription className="line-clamp-2 text-sm">
+          <CardDescription className="line-clamp-2 text-xs sm:text-sm">
             {recipe.description}
           </CardDescription>
         </CardContent>
-        <CardFooter className="grid grid-cols-2 gap-x-4 gap-y-2 p-4 pt-0 text-xs text-muted-foreground sm:grid-cols-4">
+        <CardFooter className="grid grid-cols-2 gap-x-4 gap-y-2 p-4 pt-0 text-[11px] text-muted-foreground sm:grid-cols-4 sm:text-xs">
           <div className="flex items-center gap-1.5">
             <Flame className="h-4 w-4 text-primary/70" />
             <span>{recipe.calories} kcal</span>

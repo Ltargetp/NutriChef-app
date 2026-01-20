@@ -81,5 +81,21 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-image: radial-gradient(circle at top, hsl(var(--secondary)) 0%, transparent 45%),
+      radial-gradient(circle at 20% 20%, hsla(355, 75%, 55%, 0.12) 0%, transparent 40%),
+      linear-gradient(180deg, hsla(47, 80%, 98%, 0.9) 0%, hsl(var(--background)) 45%);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: hsla(355, 75%, 55%, 0.25);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: theme('fontFamily.headline');
+    letter-spacing: -0.02em;
   }
 }

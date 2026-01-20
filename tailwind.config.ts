@@ -10,8 +10,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['"PT Sans"', 'sans-serif'],
-        headline: ['"PT Sans"', 'sans-serif'],
+        body: ['"Plus Jakarta Sans"', 'sans-serif'],
+        headline: ['"Fraunces"', 'serif'],
         code: ['monospace'],
       },
       colors: {
@@ -72,6 +72,24 @@ export default {
         sm: 'calc(var(--radius) - 4px)',
       },
       keyframes: {
+        "fade-in-up": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(12px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
+        "fade-in": {
+          "0%": {
+            opacity: "0",
+          },
+          "100%": {
+            opacity: "1",
+          },
+        },
         'accordion-down': {
           from: {
             height: '0',
@@ -90,6 +108,8 @@ export default {
         },
       },
       animation: {
+        "fade-in-up": "fade-in-up 0.7s ease-out both",
+        "fade-in": "fade-in 0.6s ease-out both",
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
